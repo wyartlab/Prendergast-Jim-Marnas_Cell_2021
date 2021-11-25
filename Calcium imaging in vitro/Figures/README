@@ -9,3 +9,7 @@ Analyse_dose_responseV3.m was used to generate the figure on amplitude of calciu
 Analyse_kinematicsV3.m was used to analyze the lynemtics of the response to pneumolysin and bitter compounds in mix, such as latency or time decay (Figure 3F-G).
 
 Analyse_mutant_responseV1.m was used to generate the figure of amplitude of calcium responses after DMDS stimulations in WT vs Tas2r3a/b mutants (Supplemental figure S8).
+
+Note: for the data requiring 2-way ANOVA analysis in term of statistics, the Matlab codes generated a Excel sheet containing all the data and this sheet is used by the R code to perform the 2-way ANOVA test.
+
+Note 2: all the figures and statitical information are stored and saved.
