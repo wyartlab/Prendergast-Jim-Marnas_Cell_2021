@@ -10,6 +10,6 @@ Analyse_kinematicsV3.m was used to analyze the lynemtics of the response to pneu
 
 Analyse_mutant_responseV1.m was used to generate the figure of amplitude of calcium responses after DMDS stimulations in WT vs Tas2r3a/b mutants (Supplemental figure S8).
 
-Note: for the data requiring 2-way ANOVA analysis in term of statistics, the Matlab codes generated a Excel sheet containing all the data and this sheet is used by the R code to perform the 2-way ANOVA test.
+Note: for the data requiring 2-way ANOVA analysis in term of statistics (so for amplitudes in Figure 3D-E, mutant analysis in supplemental figure S8 and gradient concentration analysis in Figure 3 H-I), the Matlab codes generated a Excel sheet containing all the data and this sheet is used by the coresponding R codes (amplitude, mutant or graident) to perform the 2-way ANOVA tests.
 
 Note 2: all the figures and statitical information are stored and saved.
