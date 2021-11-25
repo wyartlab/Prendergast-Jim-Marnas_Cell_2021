@@ -1,0 +1,36 @@
+
+
+Instructions
+
+For analysis of DF/F during 1s pressure-applications from an 8-bit multitiff--
+
+    First, convert whatever your image is to 8-bit .tiff in FIJI.
+    
+    Then, generate in FIJI a Z stack projection of your tiff file, and convert the dark and white colos to have your cell in black, then save it as a 8-bit tiff file.
+    
+    In Matlab, run dffintegral_invitro.m ; it will prompt you to select a file, first select your original .tiff file of your movie. It will then prompt you again to select a file, here chose the tiff file corresponding to the Z stack projection, it will be used to select ROIs.
+    
+    Matlab will ask you to first select your ROIs of your cell of interest (press enter when all your ROIs are selected), and then to select control ROIs where you pick areas with no signal. Pick the same number of control ROIs than ROIs of interest.
+    
+    The code will now run and generate a binary mask, and then ask you to pick a rectangle: draw a rectangle around the ROIs of your cells of interests.
+    
+    Matlab performs a registration to correct movements of your cells in X and Y axis. This step can take few minutes. Then your DF/F will be calculated.
+    
+    A red DF/F trace of your cells of interest will appear: for each ROIs, select two spots to calculate the standard deviation of your noise (the satandard deviation will be calculated using all the DF/F values between the two spots you selected).
+    
+    Then it asks you if your movie is a control movie for spontaneous activity (no stimulation): select Yes or No.
+    
+    Then, pick 5 spots corresponding to start of the stimulation, the start of the response, the peak of response, the begining of the decrease (decay) of the response, and the end of the decay
+    
+    You will be asked to do this for all your ROIs.
+    
+    All the timepoints selected, the corresponding DF/F values, as well as a DF/F graph of each ROIs will be saved.
+    
+    Then, those data are used by another script to generate figures (see "Calcium imaging in vitro - figures" file).
+
+Known Issues
+
+    If you don't select the same number of ROIs for the "cells of interest" and the "background", it will fail.
+    
+    if you miss a spot when you select the five successive spots on the DF/F traces, it will fail.
+
