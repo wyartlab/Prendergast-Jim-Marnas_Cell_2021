@@ -1,0 +1,111 @@
+---
+title: "Analysis - ANOVA V1_mutant"
+output: html_document
+pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Analysis of Ca2+ amplitudes after puffs
+
+```{r scatter, echo=FALSE, message=FALSE, fig.width=4, fig.height=4}
+library(ggplot2)
+library(plyr)
+library(dplyr)
+jitter <- position_jitter(width = 0.1, height = 0.1)
+
+# load from excel file
+library(readxl)
+input <- read_excel("amplis.xlsx", 
+    sheet = "amplis")
+
+
+# summary
+
+varList <- c("amplis")
+
+input$stim_nature <-factor(input$stim_nature, levels=c("aCSF","content"))
+input$genotype <-factor(input$genotype, levels=c("WT","homo"))
+
+cData_nature <- ddply(input, c("stim_nature"), summarise,
+               N = length(amplis),
+               mean = mean(amplis),
+               sd = sd(amplis),
+               se = sd/sqrt(N)
+)
+
+cData_genotype <- ddply(input, c("genotype"), summarise,
+               N = length(amplis),
+               mean = mean(amplis),
+               sd = sd(amplis),
+               se = sd/sqrt(N)
+)
+
+# plot loop for aCSF VS content
+
+for(i in varList) {
+  
+print(
+  ggplot(data = input, aes_string(x = "stim_nature", y = i))+
+    # boxplot
+    geom_boxplot()
+  )
+
+print(
+  ggplot(data = input, aes_string(x = "stim_nature", y = i))+
+    # column scatter
+    geom_point(position = jitter)+
+    
+    geom_errorbar(data = cData_nature, color = "red", aes(
+      x = stim_nature,
+      ymin = mean-se,
+      ymax = mean+se
+    ), inherit.aes = FALSE)+
+
+    geom_point(data = cData_nature, color = "red", aes(
+      x = stim_nature,
+      y = mean
+    ))
+  )
+
+}
+
+# plot loop for genotype
+
+for(i in varList) {
+  
+print(
+  ggplot(data = input, aes_string(x = "genotype", y = i))+
+    # boxplot
+    geom_boxplot()
+  )
+
+print(
+  ggplot(data = input, aes_string(x = "genotype", y = i))+
+    # column scatter
+    geom_point(position = jitter)+
+    
+    geom_errorbar(data = cData_genotype, color = "red", aes(
+      x = genotype,
+      ymin = mean-se,
+      ymax = mean+se
+    ), inherit.aes = FALSE)+
+
+    geom_point(data = cData_genotype, color = "red", aes(
+      x = genotype,
+      y = mean
+    ))
+  )
+
+}
+
+
+
+# repeated ANOVA
+
+vars <- lapply(colnames(input)[3], function(x) as.formula(paste0(x, " ~ genotype + stim_nature +  genotype:stim_nature")))
+lapply(vars, function(x) summary(aov(x, data = input)))
+lapply(vars, function(x) TukeyHSD(aov(x, data = input)))
+```
