@@ -26,7 +26,7 @@ For analysis of DF/F during 1s pressure-applications from an 8-bit multitiff--
     
     All the timepoints selected, the corresponding DF/F values, as well as a DF/F graph of each ROIs will be saved.
     
-    Then, those data are used by another script to generate figures (see "Calcium imaging in vitro - figures" file).
+    Then, those data are used by another script to generate figures (see "Calcium imaging in vitro/Figures" file).
 
 Known Issues
 
