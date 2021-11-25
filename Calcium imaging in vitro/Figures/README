@@ -1,0 +1,11 @@
+Here are all the scripts to generate the different figures.
+
+Analyse_amplitudesV5.m was used to generate the amplitudes of the responses stimulation by stimulation and the corresponding DF/F traces (Figure 3B-E of the publication).
+
+Analyse_amplitudes_bittercompounds_separated.m was used to analyze the amplitudes in response to bitter compounds individually (Supplemental figure S2).
+
+Analyse_dose_responseV3.m was used to generate the figure on amplitude of calcium responses dependant of the concentration of DMDS or 2-pentanone (Figure 3 H-I). The code is made to compare 3 concentrations (referred in the code as 25, 50 or 100mM but it can be everything) and two conditions (aCSF and "content" in the code, but it can be replaced by other conditions).
+
+Analyse_kinematicsV3.m was used to analyze the lynemtics of the response to pneumolysin and bitter compounds in mix, such as latency or time decay (Figure 3F-G).
+
+Analyse_mutant_responseV1.m was used to generate the figure of amplitude of calcium responses after DMDS stimulations in WT vs Tas2r3a/b mutants (Supplemental figure S8).
