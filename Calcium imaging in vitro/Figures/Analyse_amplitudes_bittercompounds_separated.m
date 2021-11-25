@@ -1,4 +1,4 @@
-function output = Analyse_amplitudes_compounds_separatedV1()
+function output = Analyse_amplitudes_bittercompounds_separated()
 
 clear 
 close all
